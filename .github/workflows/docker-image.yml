@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-    tags:
-      - '*'
   pull_request:
     branches: [ "main" ]
 env:
@@ -12,6 +10,8 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+
+  VERSION: v0.12.0pre3
 
 jobs:
   build:
@@ -60,6 +60,6 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ steps.meta.outputs.tags }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
           labels: ${{ steps.meta.outputs.labels }}          
 
