@@ -11,7 +11,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
 
-  VERSION: v0.12.0pre3
+  VERSION: v0.12.0pre5
 
 jobs:
   build:
