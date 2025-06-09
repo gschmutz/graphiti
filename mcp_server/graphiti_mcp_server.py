@@ -1195,7 +1195,10 @@ async def run_mcp_server():
     """Run the MCP server in the current event loop."""
     # Initialize the server
     mcp_config = await initialize_server()
-
+    
+    # fix to expose MCP (Guido 9.6.2025)
+    mcp.settings.host= '0.0.0.0'
+    
     # Run the server with stdio transport for MCP in the same event loop
     logger.info(f'Starting MCP server with transport: {mcp_config.transport}')
     if mcp_config.transport == 'stdio':
